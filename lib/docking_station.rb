@@ -10,6 +10,7 @@ DEFAULT_CAPCITY = 10
   end
 
   def dock(incoming_bike)
+    raise "Station is full" if full?
     @bikes.push incoming_bike
   end
 
