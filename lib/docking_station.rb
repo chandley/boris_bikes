@@ -21,5 +21,10 @@ DEFAULT_CAPCITY = 10
   def full?
     bike_count == @capacity
   end
+
+  def available_bikes
+    #@bikes.reject {|bike| bike.broken?}
+    @bikes.reject(&:broken?)
+  end
 end
 
