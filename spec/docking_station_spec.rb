@@ -18,8 +18,9 @@ describe DockingStation do
   end
 
   it 'should know when it is full' do
-
-
+    expect(station).not_to be_full
+    10.times {station.dock(Bike.new)}
+    expect(station).to be_full
   end
   
 end
