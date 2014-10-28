@@ -10,4 +10,8 @@ class DockingStation
   def dock(incoming_bike)
     @bikes.push incoming_bike
   end
+
+  def release
+    outgoing_bike = @bikes.pop 
+  end
 end
