@@ -11,21 +11,20 @@ module BikeContainer
   end
 
   def capacity=(number)
-    @capacity = number
+    capacity = number
   end
 
   def bike_count
-    return 0 if @bikes.nil?   # debugging only!
-    @bikes.count  
+    bikes.count  
   end
 
   def dock(incoming_bike)
     raise "Station is full" if full?
-    @bikes.push incoming_bike
+    bikes.push incoming_bike
   end
 
-  def release
-    outgoing_bike = @bikes.pop # this is done different in example
+  def release(bike)
+    bikes.delete(bike) 
   end
 
   def full?
@@ -34,7 +33,7 @@ module BikeContainer
 
   def available_bikes
     #@bikes.reject {|bike| bike.broken?}
-    @bikes.reject(&:broken?)
+    bikes.reject(&:broken?)
   end
 
 end

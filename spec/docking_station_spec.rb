@@ -16,7 +16,7 @@ describe DockingStation do
 
   it 'should release a bike' do
     station.dock(bike)
-    bike = station.release
+    station.release(bike)
     expect(station.bike_count).to eq(0)
   end
 
