@@ -8,7 +8,7 @@ describe BikeContainer  do
     holder.capacity.times { holder.dock(Bike.new) }
   end
   
-  let(:bike) { Bike.new }
+  let(:bike) {double :bike, broken?: false, is_a?: true}
   let(:holder) { ContainerHolder.new }
 
   it "should accept a bike" do
@@ -42,7 +42,6 @@ describe BikeContainer  do
   it 'should not allow you to dock something that is not a bike' do
      expect(lambda {holder.dock(:not_a_bike)}).to raise_error(RuntimeError) 
      expect(lambda {holder.dock()}).to raise_error(RuntimeError) 
-
   end
 
   it "should not release a bike which isn't there" do
@@ -66,7 +65,5 @@ describe BikeContainer  do
     holder.dock(broken_bike)
     expect(holder.available_bikes).to eq([working_bike])
   end
-
-
 
 end
