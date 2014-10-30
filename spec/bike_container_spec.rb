@@ -4,20 +4,21 @@ describe BikeContainer do
   include BikeContainer
 
   let(:bike) {double :bike, broken?: false, is_a?: true}
+  let(:broken_bike) {double :bike, broken?: true, is_a?: true}
 
   def fill_bike_container
-     self.capacity.times { self.dock(bike) }
+     capacity.times { dock(bike) }
   end
 
   it 'should accept a bike' do
-    self.dock(bike)
-    expect(self.bike_count).to eq(1)
+    dock(bike)
+    expect(bike_count).to eq(1)
   end
 
   it 'should release a bike' do
-    self.dock(bike)
-    self.release(bike)
-    expect(self.bike_count).to eq(0)
+    dock(bike)
+    release(bike)
+    expect(bike_count).to eq(0)
   end
 
    it "should know when it's full" do
@@ -28,15 +29,43 @@ describe BikeContainer do
 
   it "should not accept a bike when it's full" do
     fill_bike_container
-    expect(lambda {self.dock(bike) }).to raise_error(RuntimeError)
-  end  
+    expect(lambda {dock(bike) }).to raise_error(RuntimeError)
+  end
+
+  it 'should only dock the first bike if more than one given' do
+    dock(bike, :second_thing, :third_thing)
+    expect(bike_count).to eq(1)
+  end
+
+
+  it 'should not allow you to dock something that is not a bike' do
+     expect(lambda {dock(:not_a_bike)}).to raise_error(RuntimeError) 
+     expect(lambda {dock()}).to raise_error(RuntimeError) 
+  end
+
+  it "should not release a bike which isn't there" do
+    expect(lambda { release(bike) }).to raise_error(RuntimeError)
+  end
+
+  it 'should raise an error if empty argument passed to release' do
+    expect(lambda { release()}).to raise_error(RuntimeError)  
+  end
+
+  it 'should only release first bike if more than one requested' do
+    dock(bike)
+    release(bike, :second_thing, :third_thing)
+    expect(bike_count).to eq(0)
+  end
+
+  it "should provide a list of available bikes" do
+    dock(bike)
+    dock(broken_bike)
+    expect(available_bikes).to eq([bike])
+  end
+
 end
 
 
-#   it 'should only dock the first bike if more than one given' do
-#     holder.dock(bike, :second_thing, :third_thing)
-#     expect(holder.bike_count).to eq(1)
-#   end
 
 
 
