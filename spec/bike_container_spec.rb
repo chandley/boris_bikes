@@ -5,7 +5,7 @@ class ContainerHolder; include BikeContainer; end
 describe BikeContainer  do
 
   def fill_holder(holder)
-    20.times { holder.dock(Bike.new) }
+    holder.capacity.times { holder.dock(Bike.new) }
   end
   
   let(:bike) { Bike.new }

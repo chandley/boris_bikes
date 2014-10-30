@@ -9,7 +9,7 @@ class Garage
   end
 
   def fix_bikes
-    bikes.each { |bike| bike.fix! }
+    bikes.select(&:broken?).each(&:fix!)
   end
 
 end
