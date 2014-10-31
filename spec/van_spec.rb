@@ -6,18 +6,17 @@ describe Van do
   let(:bike) {double :bike, is_a?: true, broken?: false }
   let(:broken_bike) {double :bike, is_a?: true, 
                                    broken?: true }
-  # let(:docking_station) {double :docking_station , broken_bikes: [:broken_bike], 
-  #                                                  available_bikes: [:bike],   
-  #                                                  release: nil,
-  #                                                  dock: nil, 
-  #                                                  class?: DockingStation}
-  # let(:garage) {double :garage , available_bikes: [:bike], 
-  #                                broken_bikes: [:broken_bike],
-  #                                release: nil, 
-  #                                dock: nil,
-  #                                class?: Garage}
-  let(:docking_station) {DockingStation.new}
-  let(:garage) {Garage.new}
+  let(:docking_station) {double :docking_station , broken_bikes: [:broken_bike], 
+                                                   available_bikes: [:bike],   
+                                                   release: nil,
+                                                   dock: nil, 
+                                                   class?: DockingStation}
+  let(:garage) {double :garage , available_bikes: [:bike], 
+                                 broken_bikes: [:broken_bike],
+                                 release: nil, 
+                                 dock: nil,
+                                 class?: Garage}
+
 
 
   it "should allow setting initial capacity on initialising" do
