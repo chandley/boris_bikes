@@ -5,9 +5,11 @@ describe BikeContainer do
 
   let(:bike) {double :bike, broken?: false, is_a?: true}
   let(:broken_bike) {double :bike, broken?: true, is_a?: true}  
-  # I want access to a second bike container - doubling is a bad approach!
-  let(:other_container) {double :bike_container, available_bikes: [bike], dock: true}
-  # let(:other_container) {BikeContainer.new}
+  
+  #this approach seems a bit of a hack
+  class BikeHolder; include BikeContainer;  end
+  let(:other_container) { BikeHolder.new }
+  
   def fill_bike_container
      capacity.times { dock(bike) }
   end
@@ -66,7 +68,7 @@ describe BikeContainer do
   end
 
   # not sure that this tests the true functionality needed
-  it 'should move a bike into another container' do
+  it 'should move a bike into another container' do   
     dock(bike)  
     move(bike,self,other_container)
     expect(available_bikes).to eq([])
