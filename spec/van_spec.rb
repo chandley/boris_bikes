@@ -18,11 +18,19 @@ describe Van do
       expect(van.move(bike,docking_station,van))
     end
 
-    it 'moves all broken bikes from docking station' do
+    it 'moves all broken bikes from docking station to van' do
       allow(docking_station).to receive(:release)
       allow(docking_station).to receive(:broken_bikes).and_return([broken_bike])
       van.replenish(docking_station)
       expect(van.broken_bikes).to eq([broken_bike])
+    end
+
+    it 'moves all fixed bikes from van to docking station' do
+     van.dock(broken_bike)
+     allow(docking_station).to receive(:broken_bikes).and_return([])
+     allow(docking_station).to receive(:dock)
+     van.replenish(docking_station)
+     expect(van.available_bikes).to eq([])
     end
     
 
