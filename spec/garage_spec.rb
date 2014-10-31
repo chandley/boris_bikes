@@ -1,13 +1,12 @@
-require 'garage'
+require './lib/garage'
+require 'bike_container_spec'
 
 describe Garage do 
 
   let(:garage) { Garage.new(:capacity => 123) }
   let(:bike) {double :bike, :broken? => true, :is_a? => true }
   
-  it "should allow setting default capacity on initialising" do
-    expect(garage.capacity).to eq(123)
-  end
+  it_behaves_like "bike_container"
   
   it 'should be able to fix bikes' do
     garage.dock(bike)

@@ -13,8 +13,6 @@ describe Van do
   it_behaves_like "bike_container" 
   
 
- 
-
   it 'loads all broken bikes from docking station' do
     allow(docking_station).to receive(:broken_bikes).and_return([broken_bike])
     allow(docking_station).to receive(:release)
