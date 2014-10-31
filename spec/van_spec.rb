@@ -1,4 +1,5 @@
-require 'van'
+require './lib/van'
+require 'bike_container_spec'
 
 describe Van do
   
@@ -9,14 +10,10 @@ describe Van do
   let(:docking_station) {double :docking_station , is_a?: true}
   let(:garage) {double :garage }
 
-  # let(:docking_station) {DockingStation.new}
-  # let(:garage) {Garage.new}
+  it_behaves_like "bike_container" 
   
 
-
-  it "should allow setting initial capacity on initialising" do
-    expect(van.capacity).to eq(10)
-  end
+ 
 
   it 'loads all broken bikes from docking station' do
     allow(docking_station).to receive(:broken_bikes).and_return([broken_bike])
