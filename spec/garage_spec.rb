@@ -1,5 +1,6 @@
 require './lib/garage'
 require 'bike_container_spec'
+require 'spec_helper'
 
 describe Garage do 
 

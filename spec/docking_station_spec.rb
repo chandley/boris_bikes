@@ -1,5 +1,7 @@
 require './lib/docking_station'
 require 'bike_container_spec'
+require 'spec_helper'
+
 
 describe DockingStation do
 

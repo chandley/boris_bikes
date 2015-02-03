@@ -1,5 +1,6 @@
 require './lib/van'
 require 'bike_container_spec'
+require 'spec_helper'
 
 describe Van do
   
